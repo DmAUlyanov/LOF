@@ -26,14 +26,14 @@ class Cifar10(Dataset):
     """
     DEFAULT_DATA_PATH = config.DATA_PATH / 'cifar10'
 
-    def __init__(self, anomaly_class: str, data_path: Path = DEFAULT_DATA_PATH):
-        _dataset = CIFAR10(root=str(data_path), download=True, transform=ToTensor())
+    def __init__(self, anomaly_class: str, data_path: Path = DEFAULT_DATA_PATH, train=True):
+        _dataset = CIFAR10(root=str(data_path), download=True, transform=ToTensor(), train=train)
         anomaly_class_idx = _dataset.class_to_idx[anomaly_class]
 
         self.vectors = _dataset.data.reshape(_dataset.data.shape[0], -1)
         self.labels = (np.array(_dataset.targets) == anomaly_class_idx).astype(int)
 
-    def __len__(self):
+    def __len(self):
         return self.labels.shape[0]
 
     def __getitem__(self, idx):
