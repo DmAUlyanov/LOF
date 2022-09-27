@@ -16,7 +16,7 @@ class Satimage2Dataset(Dataset):
             data = pickle.load(data_file)
             self.vectors, self.labels = data['vectors'], data['labels'].reshape(-1)
 
-    def __len(self):
+    def __len__(self):
         return self.labels.shape[0]
 
     def __getitem__(self, idx):
