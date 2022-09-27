@@ -14,7 +14,7 @@ class MammographyDataset(Dataset):
         mat = scipy.io.loadmat(str(data_path / 'mammography.mat'))
         self.vectors, self.labels = mat['X'], mat['y']
 
-    def __len(self):
+    def __len__(self):
         return self.labels.shape[0]
 
     def __getitem__(self, idx):
